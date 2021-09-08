@@ -1,0 +1,643 @@
+
+
+CREATE A SCHEMA NAMED PROFESSSOR IN SCHOOLDB
+AND CHECK IN SCHEMA CREATED OR NOT THEN
+
+
+CREATE A TABLE BY USING CODE LIKE THIS
+CREATE TABLE STUDENT.PROFSCIENCE (
+PROF_NAME VARCHAR(50),
+PROF_AGE TINYINT,
+PROF_EDUCATION VARCHAR(30)
+);
+
+CHECK IN OBJECT EXPLORER TABLE IS CREATED OR NOT THEN
+NOW WE NEED TRANSFER TABLE TO SCHEMA PROFESSOR
+BY USING THIS CODE
+
+ALTER SCHEMA PROFESSOR TRANSFER OBJECT::STUDENT.PROFSCIENCE
+
+
+WRITE THIS CODE UNDER THE CREATE TABLE CODE BUT SELECT THE ABOVE LINE AND EXECUTE IT ONLY BY SELECTING THE ABOVE LINE ONLY...
+
+
+WE USE THIS DOWN CODE 
+
+DROP SCHEMA IF EXISTS PROFESSOR
+
+TO DELETE ANY SCHEMA
+
+
+
+TO DELETE TABLE CODE
+DROP TABLE IF EXIST (TABLE NAME)
+
+
+
+CREATE TABLE STUDENT.TENTHCLASSSTUDENTS(
+ROLL_NO TINYINT,
+STUDENT_NAME VARCHAR(50),
+STUDENT_LOCATION VARCHAR(100),
+CONSTRAINT rnpk PRIMARY KEY(ROLL_NO),
+CONSTRAINT MATHPROFFK FOREIGN KEY (MATHPROF_NAME) REFERENCES PROFESSOR.MATHSPROF(PROF_NAME)
+
+
+
+
+
+);
+
+create Database for bank
+Create schema for bank
+Create customer table and bankaccount table, connect account table with customer table with account id column
+
+
+
+
+
+CREATE TABLE BANKAC (
+CUSTOMER_NAME VARCHAR(50),
+ACCOUNT_NO INT,
+CUSTOMER_PNO INT,
+ACCOUNT_BALANCE MONEY,
+DEBIT_AMOUNT SMALLMONEY,
+CREDIT_AMOUNT SMALLMONEY,
+
+);
+
+
+
+
+
+
+
+CREATE TABLE BANKS.BANKAC(
+CUSTOMER_NAME VARCHAR(50),
+ACCOUNT_NO INT,
+CUSTOMER_PNO INT,
+ACCOUNT_BALANCE MONEY,
+DEBIT_AMOUNT SMALLMONEY,
+CREDIT_AMOUNT SMALLMONEY,
+ACCOUNT_BALANCEe Money Foreign key references SCHEMA.CUSTOMER(ACCOUNT_BALANCE)
+);
+
+CREATE TABLE BANKS.CUSTOMER(
+CUSTOMER_NAME VARCHAR(50),
+ACCOUNT_NO INT,
+CUSTOMER_PNO INT,
+ACCOUNT_BALANCE MONEY
+
+
+);
+
+
+
+
+CREATE TABLE cricket.India (
+jersey_no tinyint unique,
+player_name varchar(50) not null,
+match_no int check (match_no > 0),
+runs_scored int check(runs_scored >= 0),
+);
+
+CREATE TABLE cricket.India (
+jersey_no tinyint unique,
+player_name varchar(50) not null,
+match_no int,
+runs_scored int,
+constraint matchCheck check (match_no > 0),
+constraint runsCheck check (runs_scored >=0)
+);
+
+
+
+
+
+
+CREATE TABLE India (
+player_id int identity(1,2) primary key,
+jersey_no tinyint unique,
+player_name varchar(50) not null,
+match_no int,
+runs_scored int,
+constraint matchCheck check (match_no > 0),
+constraint runsCheck check (runs_scored >=0)
+);
+[20:13] Akshay Mane
+INSERT INTO India
+VALUES (10,'Sachin Tendulkar',400,15000)
+
+[20:18] Akshay Mane
+SELECT * FROM India
+
+
+
+
+
+
+
+
+TO INSERT INFO WE NEED CODE
+
+INSERT INTO PROFESSOR.MATHSPROF
+VALUES ('OMKAR','BTECH',3);
+
+
+TO DISPLAY INSERTED INFO CODE IS
+SELECT * FROM PROFESSOR.MATHSPROF(ITS TABLE NAME)
+
+
+
+TO DELETE INFO IN TABLES WE NEED CODE IS 
+TRUNCATE TABLE professor.mathsProf
+
+
+
+
+TO RENAME ANY TABLE WE NEED CODE
+EXEC sp_rename 'OLD TABLE NAME','NEW NAME OF TABLE'
+
+HOW TO ADD  A NEW COLUMN IN THE TABLE IF WE FORGET TO ADD AND EXECUTED 
+ALTER TABLE TABLE_NAME(PROFESSOR.MATHSPROF)
+ADD (DEFINE NEW COLUMN NAME AND ITS DATATYPE) LIKE PROFESSOR_SALARY INT CHECK (PROFESSOR_SALARY(NEW COLUMN NAME) >0)
+
+
+HOW TO ALTER(CHANGE) THE COLUNM IN A TABLE (IN THIS ALTER WE CAN CHANGE DATATYPE AND ITS LIMIT AND ALSO WE CAN ADD NOT NULL&CONSTRAINS)
+
+ALTER TABLE (TABLE_NAME)PROFESSOR.MATHSPROF
+ALTER  COLUMN PRO_EDU (NEW NAME TABLE)INT(NEW DATA TYPE)
+
+IF AT ALL WE HAVE ADDED ANEW COLUMN WITH CONSTRAINT 
+DUE TO SOME ISSUE IF WE WANT TO DELETE THAT COLUMN WHICH IS NEWLY CREATED THEN WE CANNOT DELETE IT DIRECTLY WE NEED TO DELETE THE CONSTRAIN ATTACHED TO IT THEN WE CAN DELETE IT...
+
+
+
+
+
+USING ALTER COLUMN IF I CHANGE ANY DATATYPE OF COLUMN FROM CHAR TO INT 
+
+ANS:
+IF THERE IS NO DATA IN PAST DATATYPE WE CAN EASILY CHANGE IT.
+
+
+ HOW TO ADD NEW CONSTRAINTS TO TABLE COLUMNS
+
+ALTER TABLE TABLE_NAME
+ADD CONSTRAINT NEW COLUMN CHECK()OR NOT NULL(BY USING THIS WE CAN ADD PRIMARY KEY,FOREIGN KEY,UNIQUE KEY,CHECK)
+
+
+HOW TO DELETE CONSTRAINT:
+
+ALTER TABLE TABLE_NAME
+DROP CONSTRAINT NAME OF CONSTRAINT
+
+
+IF WE NEED TO CALCULATE THROUGH TABLE
+ALTER TABLE PROFESSOR.SCIENCEPROF
+ADD PROF_SALARY AS (PROF_AGE*1500) PERSISTED
+INSERT IN TO PROFESSOR.SCIENCEPROF
+VALUES('DGF',25,'B.TECH')
+SELECT*FORM TABLE NAME
+
+
+TO IMPORT INFO OF ONE TABLE TO ANOTHER TABLE WITH NEW NAME 
+SELECT * INTO NEW TABLE NAME FROM OLD TABLE NAME
+SELECT*FROM NEW TABLE NAME(TO DISPLAY OUTPUT)
+
+TO ASSIGN a table with two names:(TWO TABLES HAVING SAME DATA IN SOME CASES)
+CREATE SYNONYM IXSTUDENTS FOR STUDENT.STUDENTIX
+
+
+
+SQL Server drops a temporary table automatically when you close the connection that created it
+
+
+SQL Server drops a global temporary table once the connection that created it closed and the queries against this table from other connections completes
+
+
+TO CREATE TEMPORARY TABLE(1 # TO CREATE)
+ CREATE TABLE #TEMPCAKEORDERS(
+ORDER ID INT,
+CUSTOMER NAME VARCHAR(50),
+FLAVOUR VARCHAR(10),
+PAYEMENT STAUTS BIT
+);
+ 
+
+
+GLOBAL TEMPORARY TABLE(TWO ##)
+
+CRAETE TABLE ##TEMPPAINTPRODUTION(
+BATCH ID INT,
+LOCATION ID INT,
+COLOR VARCHAR(50),
+COLOR TEST BIT
+);
+THIS 2 TABLES ARE VISIBLE IN TEMPORARY TABLES IN DATA BASE
+
+
+CREATE TABLE #tempIXStudents ();
+
+
+
+SELECT * INTO ##tempIXStudents FROM student.studentsIX
+
+INSERT INTO IXStudents
+OUTPUT inserted.roll_no, inserted.student_name
+VALUES (34,'SED','Pune',234563);
+
+if we dont have destination table then we can use select*from
+      
+
+if we need to edit the information in the table after the creation :
+ UPDATE TABLE NAME SET COLUMN_NAME = VALUE
+ UPDATE IXSTUDENTS SET STUENT_LOCATION = 'HYD'
+THEN ACCODING TO UP PROGRAM THE STUDENT LOCATION FOR ALL PEOPLE WILL SHIFTED TO HYD 
+
+
+IF WE NEED TO  CHANGE SPECIFIC COLUMN THEN code is 
+
+
+UPATE IX STUDENTS SET PARENT_MOBILE =2345679 WHERE ROLL_NO=21
+
+
+THEN IT WILL ACCROSS THE TABLE THEN IT WILL CHNAGE THE INFO OF NUMBER BY CHECKING THE GIVEN ROLLL NO. TEN IT MATCHES THEN IT WILL CHANGE
+ 
+  HOME WORK CREATE 2 TABLES AND COPY DATA FROM 1 TABLE TO TEMP TABLE THEN COPY DATA FROM TEMP TO TABLE TO USING WHERE CLAUSE
+
+
+insert with output= ? google
+insert with select=? google
+
+
+IF WE NEED TO SATISFY THIS OR THAT STATEMENT LIKE IF ELSE 
+WE NEED TO GO FOR OR OPERATOR
+
+IF WE NEED TO SATISFY ALL STATEMENTS WE NEED TO UNDERGO 
+AND & STATEMENT
+
+FOR DISPLAYING BETWEEN A PARTICULAR INTERVALS ::::::
+
+SELECT SCHOOL_NAME , TOTAL_STRENGTH,SCHOOL_LOCATIONFROM SCHOOLS 
+WHERE TOTAL_STRENGTH>=250 AND TOTAL_STRENGTH<=350
+
+
+AND OPERATOR TO SHOW PARTICULAR RANGE::::::
+SELECT SCHOOL_NAME , TOTAL_STRENGTH, SCHOOL_LOCATION FROM SCHOOLS
+WHERE TOTAL_STRENGTH BETWEEN 250 AND 350
+OR WE CAN WRITE (250<-->350)
+
+BY USING OR OPERATOR FOR BETWEEN RANGE::::
+SELECT SCHOOL_NAME , TOTAL_STRENGTH, SCHOOL_LOCATION FROM SCHOOLS
+WHERE TOTAL_STRENGTH NOT BETWEEN 250 AND 350
+
+
+IN OPERATOR:::::
+
+SELECT SCHOOL_NAME , TOTAL_STRENGTH, SCHOOL_LOCATION FROM SCHOOLS
+
+WHERE SCHOOL_LANGUAGE IN('MARATI','BENGALI','TELUGU')
+
+NOW IT SHOW THE RECORDS TELUGU MARATI BENGALI
+
+select school_name, total_strength, school_location from schools
+where school_name like 'r%'
+;;;THE ABOVE PROGRAM WILL SHOW THE SCHOOL NAMES START WITH R
+
+select school_name, total_strength, school_location from schools
+where school_name like '%I'
+;;; THE PRGRAM GIVE SCHOLL NAME WHIH WILL END WITH I
+
+
+it show the word which has r and a letter together 
+
+select school_name,total_strength, school_location from schools where school_location like '%ra%'
+like:hyderabad,secunderabad
+
+
+select school_name,total_strength, school_location from schools where school_location like '_um%'
+;;;; the code will give ouput of school location in which it has second and third letter must be um
+as the ouput is mumbai
+
+
+second last character will be e
+;;;;select school_name,total_strength, school_location from schools where school_location like '%e_'
+
+starting and ending word
+select school_name,total_strength, school_location from schools where school_location like '%k_a%'
+
+
+select school_name,total_strength, school_location from schools where school_location like '[bhk]*'
+;;; we will get output of location which start with b h and k
+output is bangalore,kolkata,hyderabad
+
+
+select school_name,total_strength, school_location from schools where school_location like '[h-o]%'
+;;; the output of location will the location whose name start from h i j k l m n o alphabets
+
+select school_name,total_strength, school_location from schools where school_location like '[^h-o]'
+;;;the output will not show the location whose starting letter is h i j k  l m n o
+
+
+
+to rename temporarily a column name it will only show the new name in output but not in database
+as user may not understand the programmer language so in some cases we can use it
+
+;;;;;  select school_name,total_strength as 'No_of_Students', school_location from schools order by No_of_Students
+
+
+the down order by code is use to sort the information in ascending or decending order
+ as the order by statement is has default setting of sorting the information in ascending order.......
+for sorting the information descending order we need some code...
+
+;;;;;  select school_name,total_strength as 'No_of_Students', school_location from schools order by school_location, No_of_Students ;;;;;;;ilyas will explain
+                                  (OR)
+SELECT SCHOOL_NAME,TOTAL_STRENGTH,SCHOOL_LOCATION FROM SCHOOLS ORDER BY SCHOOL_LOCATION ASC
+
+
+
+
+for sorting the information in descending order we need code below:::
+
+SELECT SCHOOL_NAME,TOTAL_STRENGTH,SCHOOL_LOCATION FROM SCHOOLS ORDER BY SCHOOL_LOCATION DESC
+
+
+it will give the strength greater than 300
+select school_name,total_strength,school_location from schools where total_strength > 300 order by school_location desc
+
+
+
+group by (groupin the main data who have same data in another colum like scholl location like mimbai,hyd,mbnr having total school 50 as there are same amount of school in these 3 areas so we can group the 3 areas in to one)
+
+
+
+selct count(*) from schools will show the total column in the database
+
+
+screen shot of summ same max and min , avg, this will summ as per the condition of particular location
+
+
+
+when we use group we should have for condition when we use normal table with out group by then we use where
+
+distint will remove duplicate values like when it shows same hyd location twice it will show only one
+
+;;; select distinct school_location from schools
+
+casses these are use differentiate the data in cases depending on there ranges:::::
+select school_id,school_name,school_location,
+case
+when total_strength between 250 AND 300 then 'small school'
+when total_strength between 300 and 350 then 'medium school'
+when total_strength between 350 and 400 then 'big school'
+end AS school_category
+from schools
+
+
+select
+sum(case when total_strength between 250 AND 300 then 1 else 0 end) AS 'small school',
+sum(case when total_strength between 300 and 350 then 1 else 0 end) AS 'medium school',
+sum(case when total_strength between 350 and 400 then 1 else 0 end) AS'big school'
+from schools  try this buddy
+
+select distinct school_location,total_strength  from schools
+
+
+offset and fetch ::::::::::::::
+select * from schools order by total_strength desc offset 10 rows
+
+offset will display the values which satisfy the condition and fetch will show the unsatisfied values 
+select school_name, total_strength from schools order by total_strength desc offset 5 rows fetch next 8 rows only
+
+select * from schools where total_strength ... by Akshay Mane
+Akshay Mane20:02
+select * from schools where total_strength = (select max(total_strength) from schools)
+
+
+DATABASE HAS 3 OPERATORS ANY,ALL , EXISTS
+select school_name, school_location from schools
+where school_id IN (select school_id from professor.scienceProf where prof_salary > 35000)
+FOR MORE CLARIFICATION CHECK SCREENSHOT
+
+
+ANY OPERATOR WORK AS SAME AS WHERE
+
+ALL OPERATOR WILL DISPLAY THE OUTPUT WHEN ALLA ARE TRUE IF THERE IS SINGLE FALSE IT WILL NOT DISPLAY
+CHECK SCREENSHOT
+EXISTS YOUTUBE
+
+
+SQL JOIN
+
+IF WE Have TWO TABLES NAMED 1 AND 2
+
+AND TABLEE-1 HAS A,B,C
+AND TABLE-2 HAS D,E,F 
+THEN TO GAVE SOME OF THE COLUMNS IN THE TWO TABLES WE  NEED JOIN 
+LIKE SELECT A,B,D,E FROM TABLE1 JOIN TABLE-2
+
+LEFT JOIN :
+IT WILL SELECT A COLUMN FROM TABLE -1(RIGHT) AND JOIN TO THE VALUES OF THETABLE-2(LEFT)  ::::::    SELECT COLUMN2 ,COLUMN 3 FROM TABLE-1 LEFT JOIN ON TABLE-2 CLOUMN-1=TABL 2 COLUMN 1
+
+RIGHT JOIN :
+IT WILL SELECT A COLUMN FROM TABLE -2(LEFT) AND JOIN TO THE VALUES OF THETABLE-1(RIGHT) ACCORDING TO THE CONDITION WHICH WE APPLY    :::::   SELECT COLUMN2 ,COLUMN 3 FROM TABLE-1 RIGHT JOIN ON TABLE-2 CLOUMN-1=TABL 2 COLUMN 1
+
+FULL JOIN (or) FULL OUTER JOIN :
+WE CAN TAKE ANY TABLE LIKE WE CAN TAKE LEFT THEN ASSIGN RIGHT SIMILARLY WISE VERSA   ::::::::   SELECT COLUMN2 ,COLUMN 3 FROM TABLE-1 FULL JOIN ON TABLE-2 CLOUMN-1=TABL 2 COLUMN 1
+
+
+CROSS JOIN::::::  SELECT COLUMN2 ,COLUMN 3 FROM TABLE-1 CROSS JOIN ON TABLE-2 CLOUMN-1=TABL 2 COLUMN 1
+
+
+
+
+WHEN WE HAVE 2 ABLES 1 & 2 THEN WE HAVE SAME COLUMN IN BOTH THE TANLES LIKE S.NO 
+SO WE CAN MATCH ONE TABLE S.NO WITH THE ANOTHER COLUMN IN THE OTHER TABLE LIKE 
+
+WE HAVE TABLE S.NO,NAMES
+TABLE-2 S.NO AND ROLL.NO
+
+TO S.NO OF TABLE 1 AND ROLL.NO OF TABLE 2 
+THEN WE USE INNERTABLE
+SELECT S.NO,ROLL.NO FROM TABLE-1INNER JOIN TABLE-2 ON TABLE 1.S.NO=TABLE2S.NO
+
+
+SELF JOIN:::::::::
+
+THE TABLE IS JOINED WITH ITSELF 
+SELECT FROM TABLE-1 I SELF JOIN TABLE-1 J ON  I.SUPE_ID = J.EMPID
+ I TOOK SCREEN SHOT HERE THE SUPERVISOR ID IS EQUAL TOO EMPLOYEE ID
+SO THERE IN SCREEN SHOT THE 4 SUPE_ID IS CONNECTED TP EMPLID
+
+ACTUALLY IT USED TO CONNECT AND MODIFY JOIN THE TABLE ITSELF
+
+
+TOOK A SCREEN SHOT OF EXAMPLE OF ASIAN PAINTS
+
+
+
+VIEW IS A STATEMENT WHICH CREATE A VIRTUAL USER INTERFACE DEPENDING UP ON THE DATA INSERTED IN THE SQL BEHIND IT.....
+AS VIEW IS SAME AS THE TABLE BUT THAT IS INTERLINKED TO MANY TABLE BEHIND THE VIRTUAL INTERFACE........
+
+*) ADVANTAGES OF VIEWS - 1) SECURITY - You can restrict users to access directly to a table and allow them to access a subset of data via views.
+
+2) CONSISTENCY - Sometimes, you need to write a complex formula or logic in every query. 
+
+CREATE VIEW IS A KEYWORD USED FOR CREATING VIEW
+
+TOOK A SCREEN SHOT OF SYNTAX OF VIEW
+CREATE VIEW professor.profInfo
+
+AS
+
+select i.prof_name,i.prof_id,
+
+( select total_strength/5 from schools j where i.school_id = j.school_id) AS students_managed
+
+from professor.scienceProf i
+
+
+TO ALTER:::::::::::
+ALTER VIEW professor.profInfo
+
+(Prof_Name, Prof_ID, Age, Students_Managed)
+
+AS
+
+select i.prof_name,i.prof_id,i.prof_age,
+
+( select total_strength/5 from schools j where i.school_id = j.school_id)
+
+from professor.scienceProf i
+
+
+TO DELETE:::::::::::
+
+DROP VIEW IF EXISTS TABLE NAME
+
+
+WE NEED TO WORK OUT PROCEDURE LIKE DROP ALTER CREATE OF IT ....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ALTER PROCEDURE schoolLocInfo
+(
+@location as varchar(100),
+@countSchools as int output
+)
+AS
+BEGIN
+select @countSchools = count(school_name) from schools
+group by school_location having school_location = @location
+END
+
+
+
+declare @outputValue as int
+exec schoolLocInfo @location = 'Hyderabad', @countSchools = @outputValue output
+
+
+
+select @outputValue
+
+
+
+select school_location, count(school_name) from schools
+group by school_location having count(school_name) >= @outputValue
+
+
+
+ALTER PROCEDURE schoolLocInfo
+(
+@location as varchar(100)
+)
+AS
+BEGIN
+declare @schoolCount as int
+select @schoolCount = count(school_name) from schools
+group by school_location having school_location = @location
+
+
+
+if(@schoolCount = 4)
+BEGIN
+...sql statement
+END
+else
+BEGIN
+...sql statement
+END
+
+END
+
+
+
+ALTER PROCEDURE schoolLocInfo
+(
+@location as varchar(100)
+)
+AS
+BEGIN
+declare @schoolCount as int
+select @schoolCount = count(school_name) from schools
+group by school_location having school_location = @location
+
+
+
+if(@schoolCount = 4)
+BEGIN
+print 'School location'+@location+' has good number of schools'
+END
+else
+BEGIN
+print 'School location'+@location+' does not have good no of schools'
+END
+END
+
+
+
+exec schoolLocInfo @location = 'Pune'
+
+
+
+
+
+CREATE PROCEDURE 
+
+
+
+
+CREATE PROCEDURE decrementStrength( @startCount as int, @endCount as int ) AS BEGIN WHILE @startCount <=@endCount BEGIN UPDATE schools set total_strength = total_strength - 15 where total_strength = @startCount SET @startCount = @startCount + 10 END END exec decrementStrength @startCount = 370, @endCount = 400
+
+ALTER PROCEDURE updateStudent( @startCount as int, @endCount as int ) AS BEGIN declare @strength as int while (@startCount <= @endCount) begin if (@startCount+15 > @endCount) begin break; end update schools set total_strength = total_strength + 15 where total_strength = @startCount set @startCount = @startCount + 10 end END GO exec updateStudent @startCount = 350, @endCount = 385
+
+ALTER PROCEDURE updateStudent( @startCount as int, @endCount as int ) AS BEGIN declare @strength as int while (@startCount <= @endCount) begin if (@startCount+15 > @endCount) begin break; end update schools set total_strength = total_strength + 15 where total_strength = @startCount set @startCount = @startCount + 10 end END GO exec updateStudent @startCount = 350, @endCount = 385
+
+
+
+
+TRY CATCH BLOCK::::::::::::::::
